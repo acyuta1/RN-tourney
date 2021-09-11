@@ -1,0 +1,33 @@
+server:
+  error:
+    include-message: always
+  port: 8070
+
+spring:
+  application:
+    name: tournament-service
+
+  datasource:
+    url: jdbc:sqlserver://localhost:1430;databaseName=rfantasy;applicationName=tourney
+    username: sa
+    password: P@ssword!
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    pool-name: HikariPool-RFANTASY-tourney
+    initialization-mode: never
+    continue-on-error: false
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/liquibase/changelog-master.xml
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        default_schema: tourney
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+        proc.param_null_passing: true
+
+configuration-service:
+  url: http://localhost:8081/api/config
