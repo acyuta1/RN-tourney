@@ -7,5 +7,6 @@
     <include file="./changes/001-create-tourney-schema.sql" relativeToChangelogFile="true" />
     <include file="./changes/002-add-tournament-table.sql" relativeToChangelogFile="true" />
     <include file="./changes/003-add-occurrence-table.sql" relativeToChangelogFile="true" />
+    <include file="./changes/004-add-occurrence-status.sql" relativeToChangelogFile="true" />
 
 </databaseChangeLog>
