@@ -27,4 +27,6 @@ public class Round {
     @Enumerated(EnumType.STRING)
     private OccurrenceStatus roundStatus = OccurrenceStatus.ONGOING;
 
+    private Integer roundValue;
+
 }

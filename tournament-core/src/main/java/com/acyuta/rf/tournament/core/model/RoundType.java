@@ -7,5 +7,5 @@ public enum RoundType {
     ROUND_OF_16,
     QUARTER_FINALS,
     SEMI_FINALS,
-    FINALS
+    FINALS;
 }
