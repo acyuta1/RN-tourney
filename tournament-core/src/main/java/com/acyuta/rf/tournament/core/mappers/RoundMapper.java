@@ -14,5 +14,6 @@ public abstract class RoundMapper {
     public abstract RoundDto toDto(Round round);
 
     @Mapping(target = "occurrence", ignore = true) // handled by decorator
+    @Mapping(target = "matches", ignore = true)
     public abstract Round fromDto(RoundDto roundDto);
 }

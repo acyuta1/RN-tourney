@@ -45,6 +45,10 @@ public class RoundService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "previous.rounds.still.ongoing!!!!!");
         }
 
+        if (roundRepository.findByOccurrenceIdAndRoundType(occurrenceDto.getId(), RoundType.valueOf(roundDto.getRoundType())).isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format("round.with.round.type - %s already.present", roundDto.getRoundType()));
+        }
+
         // On passing all the conditions, we  create a new round.
         var round = roundMapper.fromDto(roundDto);
         round.setRoundValue(round.getRoundType().ordinal());
