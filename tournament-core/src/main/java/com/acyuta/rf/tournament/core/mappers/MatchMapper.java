@@ -8,6 +8,8 @@ import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 @Mapper
 @DecoratedWith(MatchMapperDecorator.class)
 public abstract class MatchMapper {
@@ -17,4 +19,6 @@ public abstract class MatchMapper {
 
     @Mapping(target = "round", ignore = true) // handled by decorator
     public abstract Match fromDto(MatchDto matchDto);
+
+    public abstract List<MatchDto> matchDtoList(List<Match> matches);
 }

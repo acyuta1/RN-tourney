@@ -2,12 +2,10 @@ package com.acyuta.rf.tournament.api.controller;
 
 
 import com.acyuta.rf.rafantasyShared.dto.tourney.MatchDto;
-import com.acyuta.rf.rafantasyShared.dto.tourney.RoundDto;
 import com.acyuta.rf.tournament.core.mappers.MatchMapper;
-import com.acyuta.rf.tournament.core.mappers.RoundMapper;
 import com.acyuta.rf.tournament.core.service.MatchService;
-import com.acyuta.rf.tournament.core.service.RoundService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,9 +24,22 @@ public class MatchController {
         return matchMapper.toDto(matchService.findMatch(id));
     }
 
-    @PostMapping("/round/{round_id}")
-    public MatchDto addRound(@PathVariable("round_id") Long roundId, @RequestBody @Valid MatchDto matchDto) {
+    @PostMapping("/round/{roundId}")
+    public MatchDto addRound(@PathVariable("roundId") Long roundId, @RequestBody @Valid MatchDto matchDto) {
         matchDto.setRoundId(roundId);
         return matchService.addMatch(roundId, matchDto);
     }
+
+    @GetMapping("/occurrence/{occurrenceId}/round/{roundId}/match/{matchId}")
+    public MatchDto checkMatchExistsAndOngoing(@PathVariable("occurrenceId") Long occurrenceId,
+                                               @PathVariable("roundId") Long roundId,
+                                               @PathVariable("matchId") Long matchId) {
+        return matchService.checkMatchExistsAndOngoing(occurrenceId, roundId, matchId);
+    }
+
+    @PutMapping("/{id}/close")
+    public MatchDto closeMatches(@PathVariable("id") Long id, @RequestBody MatchDto matchDto) {
+        return matchService.closeMatch(id, matchDto);
+    }
+
 }

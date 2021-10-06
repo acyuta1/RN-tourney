@@ -7,6 +7,12 @@ spring:
   application:
     name: tournament-service
 
+  rabbitmq:
+    username: guest
+    password: test12
+    host: localhost
+    port: 5670
+
   datasource:
     url: jdbc:sqlserver://localhost:1430;databaseName=rfantasy;applicationName=tourney
     username: sa
