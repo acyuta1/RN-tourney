@@ -20,5 +20,4 @@ public class TournamentController {
     public List<Tournament> fetchAll() {
         return tournamentService.fetchAll();
     }
-
 }
