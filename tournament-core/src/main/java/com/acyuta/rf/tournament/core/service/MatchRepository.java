@@ -18,7 +18,7 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
             "match.round_id = :#{#round} and " +
             "(:#{#playerOne} in (match.player_one, match.player_two) " +
             "or :#{#playerTwo} in (match.player_one, match.player_two))", nativeQuery = true)
-    List<Match> findDupPlayersOfRound(@Param("round") Long roundId, @Param("playerOne") String playerOne, @Param("playerTwo") String playerTwo);
+    List<Match> findDupPlayersOfRound(@Param("round") Long roundId, @Param("playerOne") Long playerOne, @Param("playerTwo") Long playerTwo);
 
 
     @Query(value = "select m.* from tourney.match m join tourney.round r on m.round_id = r.id\n" +

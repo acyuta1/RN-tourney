@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,7 +26,7 @@ public class MatchController {
     }
 
     @PostMapping("/round/{roundId}")
-    public MatchDto addRound(@PathVariable("roundId") Long roundId, @RequestBody @Valid MatchDto matchDto) {
+    public MatchDto addMatch(@PathVariable("roundId") Long roundId, @RequestBody @Valid MatchDto matchDto) {
         matchDto.setRoundId(roundId);
         return matchService.addMatch(roundId, matchDto);
     }
@@ -40,6 +41,11 @@ public class MatchController {
     @PutMapping("/{id}/close")
     public MatchDto closeMatches(@PathVariable("id") Long id, @RequestBody MatchDto matchDto) {
         return matchService.closeMatch(id, matchDto);
+    }
+
+    @GetMapping("/round/{roundId}")
+    public List<MatchDto> findAllByRoundId(@PathVariable("roundId") Long roundId) {
+        return matchService.findAllByRoundId(roundId);
     }
 
 }

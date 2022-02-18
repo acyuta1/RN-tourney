@@ -6,6 +6,8 @@ import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 @Mapper
 @DecoratedWith(RoundMapperDecorator.class)
 public abstract class RoundMapper {
@@ -16,4 +18,6 @@ public abstract class RoundMapper {
     @Mapping(target = "occurrence", ignore = true) // handled by decorator
     @Mapping(target = "matches", ignore = true)
     public abstract Round fromDto(RoundDto roundDto);
+
+    public abstract List<RoundDto> toDtoList(List<Round> rounds);
 }

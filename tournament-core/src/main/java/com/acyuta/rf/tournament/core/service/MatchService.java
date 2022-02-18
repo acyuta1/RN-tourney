@@ -30,6 +30,8 @@ public class MatchService {
 
     private final TournamentRepository tournamentRepository;
 
+    private final PlayerService playerService;
+
     public Match findMatch(Long id) {
         return matchRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "match.not.found"));
     }
@@ -38,6 +40,8 @@ public class MatchService {
 
         // 1. round exists
         var round = roundService.findRound(roundId);
+        var playerOne = playerService.findPlayer(matchDto.getPlayerOne());
+        var playerTwo = playerService.findPlayer(matchDto.getPlayerTwo());
 
         // 2. round status ongoing or not
         if (!OccurrenceStatus.ONGOING.equals(round.getRoundStatus())) {
@@ -48,7 +52,7 @@ public class MatchService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "players cannot be the same");
         }
         // 3. duplicate entry of player name/combo
-        var duplicates = matchRepository.findDupPlayersOfRound(roundId, matchDto.getPlayerOne(), matchDto.getPlayerTwo());
+        var duplicates = matchRepository.findDupPlayersOfRound(roundId, playerOne.getId(), playerTwo.getId());
 
         if (duplicates.size() > 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "duplicate players");
@@ -108,5 +112,9 @@ public class MatchService {
         if (set < tournament.getAtpType().minSet || set > tournament.getAtpType().maxSet) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "payload does not contain proper set info");
         }
+    }
+
+    public List<MatchDto> findAllByRoundId(Long roundId) {
+        return matchMapper.matchDtoList(matchRepository.findAllByRoundId(roundId));
     }
 }

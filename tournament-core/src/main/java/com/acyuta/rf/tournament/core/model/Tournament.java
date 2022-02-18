@@ -35,4 +35,8 @@ public class Tournament {
 
     private LocalDateTime updatedAt;
 
+    private String imageUniqueName;
+
+    private String uniqueIdentityName;
+
 }

@@ -23,7 +23,7 @@
 		<spring-cloud.version>2020.0.3</spring-cloud.version>
 		<org.projectlombok.version>1.18.12</org.projectlombok.version>
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
-		<rf.shared.version>0.0.6-SNAPSHOT</rf.shared.version>
+		<rf.shared.version>0.0.9-SNAPSHOT</rf.shared.version>
 	</properties>
 
 </project>

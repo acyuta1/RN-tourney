@@ -23,4 +23,5 @@ public interface RoundRepository extends JpaRepository<Round, Long> {
 
     Optional<Round> findByOccurrenceIdAndRoundType(Long occurrenceId, RoundType roundType);
 
+    List<Round> findAllByOccurrenceId(Long occurrenceId);
 }

@@ -6,6 +6,8 @@ import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 @Mapper()
 @DecoratedWith(OccurrenceMapperDecorator.class)
 public abstract class OccurrenceMapper {
@@ -16,4 +18,6 @@ public abstract class OccurrenceMapper {
     @Mapping(target = "tournament", ignore = true) // handled by decorator
     @Mapping(target = "rounds", ignore = true)
     public abstract Occurrence fromDto(OccurrenceDto occurrenceDto);
+
+    public abstract List<OccurrenceDto> toDto(List<Occurrence> occurrences);
 }

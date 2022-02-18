@@ -101,4 +101,9 @@ public class RoundService {
     public List<MatchDto> fetchMatchesByRound(Long id) {
         return matchMapper.matchDtoList(matchRepository.findAllByRoundId(id));
     }
+
+    public List<Round> fetchRoundsByOccurrence(Long occurrenceId) {
+        var occurrence = occurrenceService.findOccurrence(occurrenceId);
+        return roundRepository.findAllByOccurrenceId(occurrenceId);
+    }
 }

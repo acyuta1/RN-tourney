@@ -23,9 +23,9 @@ public class Match {
     @Enumerated(EnumType.STRING)
     private OccurrenceStatus matchStatus = OccurrenceStatus.ONGOING;
 
-    private String playerOne;
+    private Long playerOne;
 
-    private String playerTwo;
+    private Long playerTwo;
 
     private String resultOfMatch;
 

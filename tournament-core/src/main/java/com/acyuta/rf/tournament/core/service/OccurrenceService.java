@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
 import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
@@ -119,5 +120,11 @@ public class OccurrenceService {
         occurrence.setOccurrenceStatus(OccurrenceStatus.FINISHED);
 
         return occurrenceMapper.toDto(occurrenceRepository.save(occurrence));
+    }
+
+    public List<OccurrenceDto> findOccurrencesByTournament(Long tournamentId) {
+        var tournament = tournamentService.findById(tournamentId);
+
+        return occurrenceMapper.toDto(occurrenceRepository.findAllByTournament(tournament));
     }
 }

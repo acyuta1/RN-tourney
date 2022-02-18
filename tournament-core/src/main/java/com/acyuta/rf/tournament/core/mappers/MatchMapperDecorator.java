@@ -2,10 +2,13 @@ package com.acyuta.rf.tournament.core.mappers;
 
 
 import com.acyuta.rf.rafantasyShared.dto.tourney.MatchDto;
+import com.acyuta.rf.rafantasyShared.dto.tourney.MatchPlayerResponse;
 import com.acyuta.rf.rafantasyShared.dto.tourney.RoundDto;
 import com.acyuta.rf.tournament.core.model.Match;
+import com.acyuta.rf.tournament.core.model.Player;
 import com.acyuta.rf.tournament.core.model.Round;
 import com.acyuta.rf.tournament.core.service.OccurrenceService;
+import com.acyuta.rf.tournament.core.service.PlayerService;
 import com.acyuta.rf.tournament.core.service.RoundService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,6 +22,9 @@ public abstract class MatchMapperDecorator extends MatchMapper {
     @Autowired
     private RoundService roundService;
 
+    @Autowired
+    private PlayerService playerService;
+
     @Override
     public Match fromDto(MatchDto matchDto) {
         var match = delegate.fromDto(matchDto);
@@ -30,4 +36,5 @@ public abstract class MatchMapperDecorator extends MatchMapper {
         }
         return match;
     }
+
 }

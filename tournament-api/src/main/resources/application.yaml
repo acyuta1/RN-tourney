@@ -6,6 +6,12 @@ server:
 spring:
   application:
     name: tournament-service
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
 
   rabbitmq:
     username: guest
@@ -37,3 +43,14 @@ spring:
 
 configuration-service:
   url: http://localhost:8081/api/config
+
+file:
+  upload-dir: C:\cApplications\Projects\rafantasy\media\tournaments
+
+livescore-api:
+  base-url: https://livescore6.p.rapidapi.com
+  x-rapidapi-key: 6809488b40msh5870951f23f1b4dp117513jsn564f929e06f2
+  category: tennis
+
+tennis-live-data-api:
+  base-url: https://tennis-live-data.p.rapidapi.com

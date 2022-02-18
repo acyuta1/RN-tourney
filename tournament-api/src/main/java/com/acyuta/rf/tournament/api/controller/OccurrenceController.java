@@ -27,6 +27,11 @@ public class OccurrenceController {
         return occurrenceService.isOccurrenceActive(id);
     }
 
+    @GetMapping("/tournament/{tournamentId}")
+    public List<OccurrenceDto> findOccurrencesByTournament(@PathVariable("tournamentId") Long tournamentId) {
+        return occurrenceService.findOccurrencesByTournament(tournamentId);
+    }
+
     @PostMapping("/tournament/{tournamentId}")
     public OccurrenceDto create(@PathVariable("tournamentId") Long tournamentId) {
         return occurrenceService.create(tournamentId);
@@ -38,7 +43,8 @@ public class OccurrenceController {
     }
 
     @GetMapping("/{id}/prev-occurrence/{tournament_id}")
-    public OccurrenceDto fetchPreviousOccurrence(@PathVariable("id") Long id, @PathVariable("tournament_id") Long tournamentId) {
+    public OccurrenceDto fetchPreviousOccurrence(@PathVariable("id") Long id,
+                                                 @PathVariable("tournament_id") Long tournamentId) {
         return occurrenceService.fetchPreviousOccurrence(id, tournamentId);
     }
 
