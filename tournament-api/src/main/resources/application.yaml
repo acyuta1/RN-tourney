@@ -12,7 +12,19 @@ spring:
       file-size-threshold: 2KB
       max-file-size: 200MB
       max-request-size: 215MB
-
+  cloud:
+    vault:
+      token: 00000000-0000-0000-0000-000000000000
+      scheme: http
+      enabled: true
+      paths: 'secret/data/tournament-service/tt/yy/*'
+      generic:
+        backend: tournament-service
+        profile-separator: '/'
+        enabled: true
+        application-name: tt/yy
+  config:
+    import: vault://
   rabbitmq:
     username: guest
     password: test12

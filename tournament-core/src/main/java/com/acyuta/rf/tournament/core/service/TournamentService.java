@@ -1,6 +1,5 @@
 package com.acyuta.rf.tournament.core.service;
 
-import com.acyuta.rf.rafantasyShared.dto.external.PageRequestDto;
 import com.acyuta.rf.rafantasyShared.dto.tourney.TournamentDto;
 import com.acyuta.rf.rafantasyShared.feign.external.TennisClient;
 import com.acyuta.rf.tournament.core.mappers.TournamentMapper;
@@ -16,7 +15,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -28,7 +26,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
 
 import static com.acyuta.rf.tournament.core.util.Constants.ATP_TYPES;
@@ -121,8 +118,9 @@ public class TournamentService {
                         if (!subTournamentName.toLowerCase(Locale.ROOT).contains("qualification")) {
                             tournamentList.add(constructTournament(
                                     subTournamentName,
-                                    String.format("%s_%s", tournamentJson.getString("Ccd"), subTournament.getString("Scd")),
-                                    getAtpType(tournamentName)));
+                                    getAtpType(tournamentName),
+                                    String.format("%s_%s", tournamentJson.getString("Ccd"), subTournament.getString("Scd"))
+                            ));
                         }
                     }
                 }
